@@ -1,0 +1,44 @@
+version: "3"
+
+services:      
+        db:
+                image: "postgres:12"
+                ports:
+                        - "5432:5432"
+                networks:
+                        - pern-app
+                environment:
+                        POSTGRES_USER: pi_countries
+                        POSTGRES_PASSWORD: 12345
+                        POSTGRES_DB: db_name_countries
+                volumes:
+                        - db:/var/lib/postgresql/data
+    
+        backendgames:
+                container_name: backendgames
+                image: backendgames
+                build:
+                        context: ./backend
+                depends_on:
+                        - db
+                ports:
+                        - "3100:3100"
+                networks:
+                        - pern-app
+                environment:
+                        PORT: 3100
+                        DB_HOST: db
+                        DB_PORT: 5432
+                        DB_USER: pi_countries
+                        DB_PASSWORD: 12345
+                        DB_NAME: db_name_countries
+                links:
+                        - db
+                volumes:
+                        - "./backend:/backend"
+
+networks:
+        pern-app:
+                driver: bridge
+volumes:
+        db: {}
