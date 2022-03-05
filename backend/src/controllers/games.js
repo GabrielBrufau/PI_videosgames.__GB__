@@ -6,7 +6,8 @@ class Controllers_games {
  async getAll(req,res,next){
         try{
                 const ALL = await Games.findAll();
-		console.log('###res',res)
+		console.log('### controllers.games res',typeof res)
+		console.log("#fix 1",ALL)
                 return res.status(200).json(ALL);
         }catch (error){
                 return res.status(500).json(error)
