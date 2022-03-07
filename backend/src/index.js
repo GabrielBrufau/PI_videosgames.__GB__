@@ -13,9 +13,9 @@ try{
      await conn.sync({force:true}).then(()=>{
         console.log(`
         # server ON 
-        http://localhost:3100/api/v1/games     	GET off getAll
-        				   /:id	GET off getOne
-                                        	POST off
+        http://localhost:3100/api/v1/games     	GET ON getAll
+        				  /:id	GET ON getOne
+                                        	POST ON createOne
                                         	PUT off
                                         	DELETE off`);
         server.listen(process.env.PORT || 3100,async () => {

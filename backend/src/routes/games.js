@@ -8,7 +8,7 @@ console.log('#console games.getAll()',typeof games.getAll()) //object
 
 router
         .get('/',(req,res,next)=>games.getAll(req,res))
-        .get('/:id',(req,res,next)=>games.getOne(req,res));
-
+        .get('/:id',(req,res,next)=>games.getOne(req,res))
+	.post('/',(req,res,next)=>games.createOne(req,res));
 
 module.exports = router;

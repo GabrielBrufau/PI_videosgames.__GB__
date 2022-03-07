@@ -21,5 +21,27 @@ class Controllers_games {
                 return res.status(500).json(error);
         }
  }
-}
+ async createOne(req,res,next){
+	 try{
+		 const MODEL_GAME= {
+			 		id: req.body.id,
+                                        name:req.body.name,
+                                        released:req.body.released,
+                                        background_image:req.body.background_image,
+                                        updated:req.body.updated,
+                                        platforms:req.body.platforms,
+                                        rating:req.body.rating,
+                                        genres:req.body.genres
+		 };
+		 try {
+			 const GAME_CREATED = await Games.create(MODEL_GAME);
+			 return res.status(201).json(GAME_CREATED);
+		 }catch(error){
+			 return res.status(500).json(error);
+		 };
+	 }catch(error){
+		 return res.status(500).json(error);
+	 };
+ };
+};
 module.exports = Controllers_games;
